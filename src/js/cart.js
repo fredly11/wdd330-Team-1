@@ -7,7 +7,10 @@ function renderCartContents() {
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
   const total = calculateCartTotal(cartItems);
-  console.log(total);
+  
+  document.querySelector(".cart-total").textContent =
+    `Total: $${total.toFixed(2)}`;
+ 
 }
 
 
