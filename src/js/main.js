@@ -1,3 +1,3 @@
 import productList from "./productList.mjs";
 
-productList(".product-list", "tents");
+productList("tents", ".product-list").then((list) => console.log(list));
