@@ -10,7 +10,7 @@ function renderProductDetails(product) {
 
   // adjust image path if necessary
   let img = product.Image || "";
-  if (img.startsWith("..")) img = img.replace("..", "");
+  img = img.replace(/^(\.\.\/)+/, "/");
   const imageEl = qs("#productImage");
   imageEl.src = img;
   imageEl.alt = product.Name || "product image";
