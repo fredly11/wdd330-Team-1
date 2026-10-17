@@ -1,5 +1,5 @@
 import { findProductById } from "./productData.mjs";
-import { getLocalStorage, setLocalStorage, qs } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, qs, loadHeaderFooter } from "./utils.mjs";
 
 let currentProduct = null;
 
@@ -38,6 +38,8 @@ async function addToCart(e) {
 }
 
 export default async function productDetails(productId) {
+  loadHeaderFooter(); // Cargar header y footer dinámicamente
+
   if (!productId) return;
   currentProduct = await findProductById(productId);
   renderProductDetails(currentProduct);
