@@ -1,9 +1,9 @@
-import { getLocalStorage, loadHeaderFooter } from "./utils.mjs"; // Ajusta la ruta a ../utils.mjs si está dentro de una subcarpeta como /cart/
+import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart") || []; // Prevenir error si el carrito está vacío
+  const cartItems = getLocalStorage("so-cart") || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   const productListEl = document.querySelector(".product-list");
   if (productListEl) {
