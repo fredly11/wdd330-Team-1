@@ -43,12 +43,10 @@ function showProductError(message = "Sorry, this product could not be found.") {
 
 function renderProductDetails(product) {
   if (!product) return;
-  qs("#productName").textContent = product.Brand?.Name || product.Name || "";
+  qs("#productName").textContent = product.Name || "";
   qs("#productNameWithoutBrand").textContent = product.NameWithoutBrand || "";
 
-  // adjust image path if necessary
-  let img = product.Image || "";
-  img = img.replace(/^(\.\.\/)+/, "/");
+  const img = product.Images?.PrimaryLarge || product.Image || "";
   const imageEl = qs("#productImage");
   imageEl.src = img;
   imageEl.alt = product.Name || "product image";
