@@ -90,7 +90,6 @@ export default async function productDetails(productId) {
     showProductError("No product was specified.");
     return;
   }
-
   currentProduct = await findProductById(productId);
   if (!currentProduct) {
     showProductError("Sorry, that product does not exist.");
