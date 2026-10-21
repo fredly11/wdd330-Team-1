@@ -9,7 +9,12 @@ function renderCartContents() {
   if (productListEl) {
     productListEl.innerHTML = htmlItems.join("");
   }
+
+  const total = calculateCartTotal(cartItems);
+  const totalEl = document.querySelector(".cart-total");
+  if (totalEl) totalEl.textContent = `Total: $${total.toFixed(2)}`;
 }
+
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
@@ -28,6 +33,9 @@ function cartItemTemplate(item) {
 </li>`;
 
   return newItem;
+}
+function calculateCartTotal(cartItems) {
+  return cartItems.reduce((total, item) => total + Number(item.FinalPrice || 0), 0);
 }
 
 renderCartContents();
