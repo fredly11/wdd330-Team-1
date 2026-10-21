@@ -103,11 +103,61 @@ button {
   text-align: center;
 }
 
+.cart a {
+  position: relative;
+  display: inline-block;
+}
+
 .cart svg {
   width: 25px;
 }
 .cart:hover svg {
   fill: gray;
+}
+
+.cart-count {
+  position: absolute;
+  top: -0.55em;
+  right: -0.85em;
+  min-width: 1.35em;
+  height: 1.35em;
+  padding: 0 0.25em;
+  border-radius: 999px;
+  background: var(--secondary-color);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1.35em;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.cart-count.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cart-link--bounce svg,
+.cart-link--bounce .cart-count {
+  animation: cartBounce 0.4s ease;
+}
+
+@keyframes cartBounce {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  30% {
+    transform: translateY(-6px) scale(1.08);
+  }
+  60% {
+    transform: translateY(0) scale(0.96);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* End cart icon styles */
@@ -164,6 +214,15 @@ button {
 
 .product-detail img {
   width: 100%;
+}
+
+.product-error {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #c85a5a;
+  background-color: #fff3f3;
+  color: #7a1f1f;
+  border-radius: 4px;
 }
 
 /* Start cart list card styles */
