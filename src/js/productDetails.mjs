@@ -72,18 +72,31 @@ function renderProductDetails(product) {
 async function addToCart(e) {
   const id = e?.target?.dataset?.id;
   if (!id) return;
+
   const product = await findProductById(id);
+  console.log(product);
+  
   if (!product) return;
 
-  let cart = getLocalStorage("so-cart");
+  let cart = getLocalStorage("so-cart") || [];
+
   if (!Array.isArray(cart)) {
     cart = cart ? [cart] : [];
   }
-  cart.push(product);
+
+  const existingItem = cart.find((item) => item.Id === product.Id);
+
+  if (existingItem) {
+    existingItem.quantity = (existingItem.quantity || 1) + 1;
+  } else {
+    product.quantity = 1;
+    cart.push(product);
+  }
+
   setLocalStorage("so-cart", cart);
   updateCartCount(true);
 }
-
+  
 export default async function productDetails(productId) {
   if (!productId) {
     showProductError("No product was specified.");
