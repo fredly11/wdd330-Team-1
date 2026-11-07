@@ -79,6 +79,10 @@ calculateItemSummary: function() {
       // Call the checkout method in our externalServices module and send it our data object.
       const res = await externalServices.checkout(json);
       console.log(res);
+      
+      localStorage.removeItem(this.key);
+      
+      window.location.href = "success.html";
     } catch (err) {
       console.log(err);
     }
