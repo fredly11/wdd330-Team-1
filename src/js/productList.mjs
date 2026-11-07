@@ -6,7 +6,8 @@ function productCardTemplate(product) {
   const brand = (product.Brand && product.Brand.Name) || "";
   const name = product.NameWithoutBrand || product.Name || "";
   const price = typeof product.FinalPrice === "number" ? product.FinalPrice.toFixed(2) : product.FinalPrice;
-  return `<li class="product-card"><a href="/product_pages/index.html?product=${product.Id}"><img src="${imageSrc}" alt="Image of ${name}" /><h3 class="card__brand">${brand}</h3><h2 class="card__name">${name}</h2><p class="product-card__price">$${price}</p></a></li>`;
+  const discount = (product.SuggestedRetailPrice - product.FinalPrice).toFixed(2);
+  return `<li class="product-card"><a href="/product_pages/index.html?product=${product.Id}"><img src="${imageSrc}" alt="Image of ${name}" /><h3 class="card__brand">${brand}</h3><h2 class="card__name">${name}</h2><p class="product-card__price">$${price} (Save $${discount})</p></a></li>`;
 }
 
 export default async function productList(category = "tents", selector = ".product-list") {

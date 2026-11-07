@@ -52,6 +52,7 @@ function renderProductDetails(product) {
   imageEl.alt = product.Name || "product image";
 
   qs("#productFinalPrice").textContent = `$${product.FinalPrice}`;
+  qs("#productFinalPrice").textContent += ` (Save $${(product.SuggestedRetailPrice - product.FinalPrice).toFixed(2)})`;
   qs("#productColorName").textContent = product.Colors?.[0]?.ColorName || "";
   qs("#productDescriptionHtmlSimple").innerHTML = product.DescriptionHtmlSimple || "";
 
@@ -89,6 +90,7 @@ export default async function productDetails(productId) {
     return;
   }
   currentProduct = await findProductById(productId);
+
   if (!currentProduct) {
     showProductError("Sorry, that product does not exist.");
     return;
