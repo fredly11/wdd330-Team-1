@@ -101,6 +101,22 @@ export function loadTemplate(path) {
   };
 }
 
+export function alertMessage(message, scroll = true) {
+  const alert = document.createElement("div");
+  alert.className = "alert";
+  alert.innerHTML = `<p>${message}</p>`;
+
+  const main = qs("main");
+  if (main) {
+    main.prepend(alert);
+    if (scroll) window.scrollTo(0, 0);
+  }
+
+  setTimeout(() => {
+    alert.remove();
+  }, 3000);
+}
+
 export async function loadHeaderFooter() {
   const headerFn = loadTemplate("/partials/header.html");
   const footerFn = loadTemplate("/partials/footer.html");
