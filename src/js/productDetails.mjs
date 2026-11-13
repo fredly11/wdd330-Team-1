@@ -45,6 +45,13 @@ function renderProductDetails(product) {
   if (!product) return;
   qs("#productName").textContent = product.Name || "";
   qs("#productNameWithoutBrand").textContent = product.NameWithoutBrand || "";
+  
+  const discount = (
+    ((product.SuggestedRetailPrice - product.FinalPrice) /
+      product.SuggestedRetailPrice) * 100
+  ).toFixed(0);
+
+  qs("#discountFlag").textContent = `${discount}% OFF`;
 
   const img = product.Images?.PrimaryLarge || product.Image || "";
   const imageEl = qs("#productImage");
