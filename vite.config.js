@@ -4,6 +4,15 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   root: "src/",
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://server-nodejs.cit.byui.edu:3000",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
   build: {
     outDir: "../dist",
     rollupOptions: {
